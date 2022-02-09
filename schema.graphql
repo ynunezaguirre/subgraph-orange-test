@@ -1,5 +1,5 @@
 type Minter @entity {
   id: ID!
   wallet: Bytes! # address
-  hnId: Bytes!
+  hnId: String!
 }
