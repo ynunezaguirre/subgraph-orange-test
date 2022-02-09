@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum
     name: ERC1967Proxy
@@ -18,7 +18,7 @@ dataSources:
         - Upgraded
       abis:
         - name: ERC1967Proxy
-          file: ./abis/ERC1967Proxy.json
+          file: ERC1967Proxy/abis/ERC1967Proxy.json
       eventHandlers:
         - event: AdminChanged(address,address)
           handler: handleAdminChanged
@@ -26,4 +26,4 @@ dataSources:
           handler: handleBeaconUpgraded
         - event: Upgraded(indexed address)
           handler: handleUpgraded
-      file: ./src/mapping.ts
+      file: ERC1967Proxy/ERC1967Proxy.wasm
