@@ -1,6 +1,7 @@
 type Minter @entity {
   id: ID!
-  wallet: Bytes! # address
+  token: Bytes! # address
+  from: Bytes! # address
   hnId: String!
   hash: Bytes!
   block: BigInt!
