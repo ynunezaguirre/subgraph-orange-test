@@ -19,6 +19,7 @@ export class Minter extends Entity {
     this.set("wallet", Value.fromBytes(Bytes.empty()));
     this.set("hnId", Value.fromString(""));
     this.set("hash", Value.fromBytes(Bytes.empty()));
+    this.set("block", Value.fromBigInt(BigInt.zero()));
   }
 
   save(): void {
@@ -72,5 +73,14 @@ export class Minter extends Entity {
 
   set hash(value: Bytes) {
     this.set("hash", Value.fromBytes(value));
+  }
+
+  get block(): BigInt {
+    let value = this.get("block");
+    return value!.toBigInt();
+  }
+
+  set block(value: BigInt) {
+    this.set("block", Value.fromBigInt(value));
   }
 }

@@ -13,5 +13,6 @@ export function handleMint(event: Mint): void {
   entity.hash = event.transaction.hash;
   entity.wallet = event.params.wallet
   entity.hnId = event.params.hnId.toHexString()
+  entity.block = event.block.number
   entity.save()
 }
