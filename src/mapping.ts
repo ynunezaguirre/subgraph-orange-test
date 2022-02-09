@@ -10,8 +10,8 @@ export function handleMint(event: Mint): void {
   if (!entity) {
     entity = new Minter(event.transaction.from.toHex())
   }
-  event.transaction.hash
+  entity.hash = event.transaction.hash;
   entity.wallet = event.params.wallet
-  entity.hnId = event.params.hnId.toString()
+  entity.hnId = event.params.hnId.toHexString()
   entity.save()
 }
