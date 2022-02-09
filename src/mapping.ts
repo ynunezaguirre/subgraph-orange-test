@@ -6,12 +6,12 @@ import { Minter } from "../generated/schema"
 
 
 export function handleMint(event: Mint): void {
-  let entity = Minter.load(event.transaction.from.toHex())
+  let entity = Minter.load(event.transaction.hash.toHex())
   if (!entity) {
-    entity = new Minter(event.transaction.from.toHex())
+    entity = new Minter(event.transaction.hash.toHex())
   }
-  entity.hash = event.transaction.hash;
-  entity.wallet = event.params.wallet
+  entity.from = event.transaction.from;
+  entity.token = event.params.wallet
   entity.hnId = event.params.hnId.toHexString()
   entity.block = event.block.number
   entity.save()
