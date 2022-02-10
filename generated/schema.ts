@@ -11,12 +11,12 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class Minter extends Entity {
+export class MintEvent extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
 
-    this.set("token", Value.fromBytes(Bytes.empty()));
+    this.set("owner", Value.fromBytes(Bytes.empty()));
     this.set("from", Value.fromBytes(Bytes.empty()));
     this.set("hnId", Value.fromString(""));
     this.set("hash", Value.fromBytes(Bytes.empty()));
@@ -25,19 +25,19 @@ export class Minter extends Entity {
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save Minter entity without an ID");
+    assert(id != null, "Cannot save MintEvent entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        "Cannot save Minter entity with non-string ID. " +
+        "Cannot save MintEvent entity with non-string ID. " +
           'Considering using .toHex() to convert the "id" to a string.'
       );
-      store.set("Minter", id.toString(), this);
+      store.set("MintEvent", id.toString(), this);
     }
   }
 
-  static load(id: string): Minter | null {
-    return changetype<Minter | null>(store.get("Minter", id));
+  static load(id: string): MintEvent | null {
+    return changetype<MintEvent | null>(store.get("MintEvent", id));
   }
 
   get id(): string {
@@ -49,13 +49,13 @@ export class Minter extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get token(): Bytes {
-    let value = this.get("token");
+  get owner(): Bytes {
+    let value = this.get("owner");
     return value!.toBytes();
   }
 
-  set token(value: Bytes) {
-    this.set("token", Value.fromBytes(value));
+  set owner(value: Bytes) {
+    this.set("owner", Value.fromBytes(value));
   }
 
   get from(): Bytes {

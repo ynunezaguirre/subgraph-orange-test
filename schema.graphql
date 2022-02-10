@@ -1,6 +1,6 @@
-type Minter @entity {
+type MintEvent @entity {
   id: ID!
-  token: Bytes! # address
+  owner: Bytes! # address
   from: Bytes! # address
   hnId: String!
   hash: Bytes!
